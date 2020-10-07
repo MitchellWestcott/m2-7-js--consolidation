@@ -82,7 +82,61 @@ const inputData = {
 
 function transformData(data) {
   // Your code here
-}
+ // "type": "mother",
+//       "name": "Joyce Byers",
+//       "age": 35,
+//       "status": "worried",
+//       "superpowers": []
+//     },
+//     {
+//       "type": "girlfriend",
+//       "name": "Eleven",
+//       "age": 9,
+//       "status": "angry",
+//       "superpowers": [
+//         "telepathy",
+//         "multiverse portal sealing"
+
+
+  let newData = {
+    name: data.name,
+    age: data.age,
+    status: data.status,
+    address: {
+      streetAddress: data.address1,
+      city: data.addressCity,
+      state: data.addressState,
+      country: data.addressCountry,
+    },
+    superpowers: superpowers(data.superpower1, data.superpower2),
+    relationships: [{
+      type: "mother",
+      name: data.motherName,
+      age: data.motherAge,
+      status: data.motherStatus,
+      superpowers: superpowers(data.motherSuperpower1, data.motherSuperpower2),
+      },
+      {
+        type: "girlfriend",
+        name: data.girlfriendName,
+        age: data.girlfriendAge,
+        status: data.girlfriendStatus,
+        superpowers: superpowers(data.girlfriendSuperpower1, data.girlfriendSuperpower2),
+      }]
+  };
+  //just search for if they're NOT null and return whatever isn't
+  function superpowers(a, b) {
+    let powerArr = [];
+    if (a !== null) {
+      powerArr.push(a);
+    }
+    if (b !== null) {
+      powerArr.push(b);
+    }
+    return powerArr;
+  }
+  return newData;
+};
 
 // Use a console.log to verify
 // `JSON.stringify` is used to "pretty-print" the output, so that it's easy

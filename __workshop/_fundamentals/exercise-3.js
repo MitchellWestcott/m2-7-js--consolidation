@@ -60,8 +60,26 @@ const favoriteDessertsGroupB = {
 //   'dessert': [ 'minda' ]
 // }
 
+//create a new object to push the final values to
+//create an array with all of the keys
+//if keys[value] push to new
+
 function groupByValue(obj) {
   // do something
+  let finalObj = {};
+  let nameKey = Object.keys(obj);
+  let desserts = Object.values(obj);
+  let originalObj = Object.entries(obj);
+
+  desserts.forEach((dessert, index) => {
+    if (!finalObj[dessert]) {
+      finalObj[dessert] = [];
+      finalObj[dessert].push(nameKey[index]);
+    } else {
+      finalObj[dessert].push(nameKey[index])
+    }
+  });
+  return finalObj;
 }
 
 // Verification via console.log()

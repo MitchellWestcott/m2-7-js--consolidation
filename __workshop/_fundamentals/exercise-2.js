@@ -54,6 +54,69 @@ const favoriteDessertsGroupB = {
 
 function sortByPopularity(obj) {
   // Write code
+  //var counts = {};
+
+// for (var i = 0; i < arr.length; i++) {
+//   var num = arr[i];
+//   counts[num] = counts[num] ? counts[num] + 1 : 1;
+// }
+//throw everything into a new array for access (groupA + groupB)
+// take the values by count and throw them PLUS their key in a new array, then just use sort() on
+//the new value (occurence) applied to them
+
+//const count = array.reduce((acc, cur) => cur.id === id ? ++acc : acc, 0);
+
+  let dessertArray = Object.values(obj);
+
+  let dessertCounter = dessertArray.reduce((acc, item) => {
+    if (acc[item]) {
+      acc[item] += 1;
+    } else {
+      acc[item] = 1;
+    }
+    return acc;
+  }, {});
+
+  //taking the items from the array and giving them a number each time they occur
+
+  let dessertOrder = [];
+  let dessertNames = Object.keys(dessertCounter);
+  let dessertCounts = Object.values(dessertCounter);
+
+  //taking key/value pairs and pushing them into our new array for sorting
+
+  dessertNames.forEach((item, index) => {
+    let name = item;
+    let count = dessertCounts[index];
+    dessertOrder.push({name, count});
+  });
+
+  dessertOrder.sort((item1, item2) => {
+    if (item1.count > item2.count) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
+  console.log(dessertOrder);
+
+  // { name: 'cheese cake', count: 4 },
+  // { name: 'ice-cream', count: 3 },
+  // { name: 'brownies', count: 2 },
+  // { name: 'tiramisu', count: 1 },
+  // { name: 'chocolate cake', count: 1 },
+  // { name: 'apple pie', count: 1 },
+  // { name: 'rhubard pie', count: 1 },
+  // { name: 'waffles', count: 1 },
+  // { name: 'profiteroles', count: 1 }
+
+  let sortedArray = dessertOrder.map((obj) => {
+    return obj.name;
+  });
+
+  return sortedArray;
+
 }
 
 // Verification via console.log()
